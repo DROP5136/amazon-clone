@@ -115,4 +115,10 @@ nav {
   margin-top: 2px;
   font-weight: bold;
 }
+.img1{
+  height: 180px;
+  position: relative;
+  top: 100px;
+  width: 230px;
+}
 
