@@ -24,7 +24,7 @@ producthtml+=`
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="selected-quantity">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -45,7 +45,7 @@ producthtml+=`
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart-btn">
             Add to Cart
           </button>
         </div>`
@@ -53,3 +53,10 @@ producthtml+=`
         }
     )
 document.querySelector(".js-products-grid").innerHTML=producthtml 
+document.querySelectorAll('.js-add-to-cart-btn').forEach(button=>{
+    button.addEventListener('click',()=>{
+        document.querySelector('.selected-quantity')
+        document.querySelector('.js-cart-quantity').innerHTML+number;
+    })
+}
+)
