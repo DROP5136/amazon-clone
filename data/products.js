@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -656,5 +656,22 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "5968897c-4d27-4872-89f6-5bcb052746e2",
+    image: "images/products/Harpic_-_IN_-_en-IN-harpic_power_plus_original_toilet_cleaner.webp",
+    name: "Harpic Power Plus Original Toilet Cleaner",
+    rating: {
+      stars: 4.5,
+      count: 4321
+    },
+    price: 245,
+    keywords: [
+      "toilet",
+      "harpic",
+      "cleaner",
+      "bathroom"
+    ],
   }
-];
+
+]
