@@ -1,6 +1,6 @@
 export const cart=[]
 export function addtocart(productid,selectedquantity){
-    let found=false
+              let found=false
               
               cart.forEach(name=>
               {
