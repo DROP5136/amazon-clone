@@ -1,4 +1,4 @@
-import {cart, addtocart, clean, } from './cart.js'
+import {cart, addtocart, clean, totalquantity } from './cart.js'
 import {products} from '../data/products.js'
 let producthtml=""
 products.forEach(product =>{
@@ -64,8 +64,8 @@ document.querySelectorAll('.js-add-to-cart-btn').forEach(button=>{
           
           addtocart(productid,selectedquantity)
           
-       
-
+        let totalquan=totalquantity()
+        console.log(totalquan)
      
         document.querySelector(".js-cart-quantity").innerHTML=totalquan
         const addedElement = document.querySelector(`.added-to-cart-${productid}`);
@@ -76,7 +76,7 @@ document.querySelectorAll('.js-add-to-cart-btn').forEach(button=>{
         timeoutid.set(productid, setTimeout(()=>
         addedElement.classList.remove('added-to-cart-visible')
         ,2000));
-
+        
       }
       );
       

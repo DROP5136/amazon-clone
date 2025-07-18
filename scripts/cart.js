@@ -31,18 +31,16 @@ let totalquan=0
     return totalquan
     }
 export function totalprice(){
-  let totprice=0
-  cart.forEach(cartvalue=>{
-    products.forEach(product => {
-      if(cartvalue.productid===product.id)
-        totprice+=product.price*cartvalue.quantity;
-      }
-    
-    )
-  }
-  )
+  let totprice = 0;
+  cart.forEach(cartvalue => {
+    const product = products.find(p => p.id === cartvalue.productid);
+    if (product) {
+      totprice += product.price * cartvalue.quantity;
+    }
+  });
   return totprice;
 }
+
 //For temporary use
 export function clean(){
   localStorage.removeItem('cart')

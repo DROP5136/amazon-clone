@@ -1,6 +1,6 @@
 import { products } from '../data/products.js';
-import { cart, clean } from './cart.js';
-
+import { cart, clean, totalquantity, totalprice } from './cart.js';
+let totalquan=totalquantity() 
 
 let carthtml = "";
 
@@ -34,21 +34,21 @@ cart.forEach(item => {
           <input type="radio" checked class="delivery-option-input" name="delivery-option-${item.productid}">
           <div>
             <div class="delivery-option-date">Tuesday, June 21</div>
-            <div class="delivery-option-price">FREE Shipping</div>
+            <div class="delivery-option-price-${item.productid}">FREE Shipping</div>
           </div>
         </div>
         <div class="delivery-option">
           <input type="radio" class="delivery-option-input" name="delivery-option-${item.productid}">
           <div>
             <div class="delivery-option-date">Wednesday, June 15</div>
-            <div class="delivery-option-price">₹50 - Shipping</div>
+            <div class="delivery-option-price-${item.productid}">₹50 - Shipping</div>
           </div>
         </div>
         <div class="delivery-option">
           <input type="radio" class="delivery-option-input" name="delivery-option-${item.productid}">
           <div>
             <div class="delivery-option-date">Monday, June 13</div>
-            <div class="delivery-option-price">₹100 - Shipping</div>
+            <div class="delivery-option-price-${item.productid}">₹100 - Shipping</div>
           </div>
         </div>
       </div>
@@ -56,34 +56,36 @@ cart.forEach(item => {
     
   `;
 });
+
+let totprice=totalprice()
 const ordersummary=`<div class="payment-summary">
           <div class="payment-summary-title">
             Order Summary
           </div>
 
           <div class="payment-summary-row">
-            <div>Items ():</div>
-            <div class="payment-summary-money">$</div>
+            <div>Items (${totalquan}):</div>
+            <div class="payment-summary-money">₹${totprice}</div>
           </div>
 
           <div class="payment-summary-row">
             <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">$4.99</div>
+            <div class="payment-summary-money">₹100</div>
           </div>
 
           <div class="payment-summary-row subtotal-row">
             <div>Total before tax:</div>
-            <div class="payment-summary-money">$47.74</div>
+            <div class="payment-summary-money">₹${totprice+100}</div>
           </div>
 
           <div class="payment-summary-row">
-            <div>Estimated tax (10%):</div>
-            <div class="payment-summary-money">$4.77</div>
+            <div>GST (10%):</div>
+            <div class="payment-summary-money">₹${((totprice+100)*1.1).toFixed()}</div>
           </div>
 
           <div class="payment-summary-row total-row">
             <div>Order total:</div>
-            <div class="payment-summary-money">$52.51</div>
+            <div class="payment-summary-money">₹${((totprice+100)*1.1).toFixed()}</div>
           </div>
 
           <button class="place-order-button button-primary">
@@ -94,5 +96,3 @@ const ordersummary=`<div class="payment-summary">
     </div>
 `
 document.querySelector('.cart-item-container').innerHTML = carthtml+ordersummary;
-
-
