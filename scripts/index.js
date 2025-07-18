@@ -1,7 +1,8 @@
 import {cart, addtocart, clean, totalquantity } from './cart.js'
 import {products} from '../data/products.js'
 let producthtml=""
-document.querySelector(".js-cart-quantity").innerHTML=JSON.parse(localStorage.getItem('totalquan'))
+if(localStorage.getItem('totalquan')) document.querySelector(".js-cart-quantity").innerHTML=JSON.parse(localStorage.getItem('totalquan'))
+else 0
 products.forEach(product =>{
 producthtml+=`
 <div class="product-container">
