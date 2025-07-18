@@ -98,18 +98,5 @@ const ordersummary=`<div class="payment-summary">
 `
 document.querySelector('.cart-item-container').innerHTML = carthtml+ordersummary;
 
-cart.forEach(atom=>{
-  document.querySelectorAll(`.js-del-${atom.productid}`).forEach(button=>
-  {
-    button.addEventListener('click',()=>{
-      cart = cart.filter(item => item.productid !== atom.productid);
-      const updatedCart = cartData.filter(item => item.productid !== atom.productid);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        renderCart(updatedCart);
-        console.log(cart)
-    })
-  })
-  
-})
-renderCart(cart)
+
 
