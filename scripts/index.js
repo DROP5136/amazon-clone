@@ -1,6 +1,7 @@
 import {cart, addtocart, clean, totalquantity } from './cart.js'
 import {products} from '../data/products.js'
 let producthtml=""
+document.querySelector(".js-cart-quantity").innerHTML=JSON.parse(localStorage.getItem('totalquan'))
 products.forEach(product =>{
 producthtml+=`
 <div class="product-container">
@@ -64,10 +65,9 @@ document.querySelectorAll('.js-add-to-cart-btn').forEach(button=>{
           
           addtocart(productid,selectedquantity)
           
-        let totalquan=totalquantity()
-        console.log(totalquan)
+          totalquantity()
      
-        document.querySelector(".js-cart-quantity").innerHTML=totalquan
+        document.querySelector(".js-cart-quantity").innerHTML=JSON.parse(localStorage.getItem('totalquan'))
         const addedElement = document.querySelector(`.added-to-cart-${productid}`);
         addedElement.classList.add('added-to-cart-visible')
         if(timeoutid) {

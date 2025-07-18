@@ -25,10 +25,12 @@ export function addtocart(productid,selectedquantity){
 }
 export function totalquantity(){
 let totalquan=0
+let tinga=JSON.parse(localStorage.getItem('totalquan')) || 1
      cart.forEach(value=>{
          totalquan+=value.quantity
      })
-    return totalquan
+     localStorage.setItem('totalquan',JSON.stringify(totalquan))
+    return tinga
     }
 export function totalprice(){
   let totprice = 0;

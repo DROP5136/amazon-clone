@@ -24,7 +24,7 @@ cart.forEach(item => {
             Quantity: <span class="quantity-label">${item.quantity}</span>
           </span>
           <span class="update-quantity-link link-primary">Update</span>
-          <span class="delete-quantity-link link-primary">Delete</span>
+          <span class="delete-quantity-link link-primary js-del-${item.productid}">Delete</span>
         </div>
       </div>
 
@@ -58,6 +58,7 @@ cart.forEach(item => {
 });
 
 let totprice=totalprice()
+
 const ordersummary=`<div class="payment-summary">
           <div class="payment-summary-title">
             Order Summary
@@ -96,3 +97,19 @@ const ordersummary=`<div class="payment-summary">
     </div>
 `
 document.querySelector('.cart-item-container').innerHTML = carthtml+ordersummary;
+
+cart.forEach(atom=>{
+  document.querySelectorAll(`.js-del-${atom.productid}`).forEach(button=>
+  {
+    button.addEventListener('click',()=>{
+      cart = cart.filter(item => item.productid !== atom.productid);
+      const updatedCart = cartData.filter(item => item.productid !== atom.productid);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        renderCart(updatedCart);
+        console.log(cart)
+    })
+  })
+  
+})
+renderCart(cart)
+
