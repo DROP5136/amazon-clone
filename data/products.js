@@ -665,7 +665,7 @@ export const products = [
       stars: 4.5,
       count: 4321
     },
-    price: 245,
+    price: 150,
     keywords: [
       "toilet",
       "harpic",

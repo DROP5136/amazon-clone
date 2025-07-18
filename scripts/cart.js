@@ -1,4 +1,4 @@
-export const cart=[]
+export const cart=JSON.parse(localStorage.getItem('cart')) || []
 export function addtocart(productid,selectedquantity){
               let found=false
               
@@ -19,4 +19,9 @@ export function addtocart(productid,selectedquantity){
               })
               
             }
+            localStorage.setItem('cart',JSON.stringify(cart))
+}
+//For temporary use
+export function clean(){
+  localStorage.removeItem('cart')
 }
