@@ -69,7 +69,7 @@ document.querySelectorAll('.js-add-to-cart-btn').forEach(button=>{
           
           totalquantity()
      
-        document.querySelector(".js-cart-quantity").innerHTML=JSON.parse(localStorage.getItem('totalquan'))
+        document.querySelector(".js-cart-quantity").innerHTML=totalquantity()
         const addedElement = document.querySelector(`.added-to-cart-${productid}`);
         addedElement.classList.add('added-to-cart-visible')
         if(timeoutid) {
@@ -87,4 +87,4 @@ document.querySelectorAll('.js-add-to-cart-btn').forEach(button=>{
     }
     
   )
- 
+  document.querySelector(".js-cart-quantity").innerHTML=totalquantity()

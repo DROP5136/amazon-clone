@@ -1,7 +1,9 @@
 import { products } from '../data/products.js';
-import { cart, clean, totalquantity, totalprice } from './cart.js';
+import { cart, clean, totalquantity, totalprice, removefromcart } from './cart.js';
+function rendercart(){
+  
 let totalquan=totalquantity() 
-
+console.log(totalquan)
 let carthtml = "";
 
 cart.forEach(item => {
@@ -24,7 +26,7 @@ cart.forEach(item => {
             Quantity: <span class="quantity-label">${item.quantity}</span>
           </span>
           <span class="update-quantity-link link-primary">Update</span>
-          <span class="delete-quantity-link link-primary js-del-${item.productid}">Delete</span>
+          <span class="delete-quantity-link link-primary" data-product-id="${matchingproduct.id}">Delete</span>
         </div>
       </div>
 
@@ -98,5 +100,12 @@ const ordersummary=`<div class="payment-summary">
 `
 document.querySelector('.cart-item-container').innerHTML = carthtml+ordersummary;
 
-
-
+document.querySelectorAll('.delete-quantity-link').forEach(link=>{
+  link.addEventListener('click',()=>{
+    const productId=link.dataset.productId;
+  
+    removefromcart(productId)
+    rendercart();
+  })
+})}
+rendercart()

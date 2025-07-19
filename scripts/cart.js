@@ -25,12 +25,12 @@ export function addtocart(productid,selectedquantity){
 }
 export function totalquantity(){
 let totalquan=0
-let tinga=JSON.parse(localStorage.getItem('totalquan')) || 1
+
      cart.forEach(value=>{
          totalquan+=value.quantity
      })
-     localStorage.setItem('totalquan',JSON.stringify(totalquan))
-    return tinga
+     
+    return totalquan
     }
 export function totalprice(){
   let totprice = 0;
@@ -46,4 +46,18 @@ export function totalprice(){
 //For temporary use
 export function clean(){
   localStorage.removeItem('cart')
+}
+export function removefromcart(prodid){
+    let temcart=[]
+    cart.forEach(item=>{
+      if(item.productid!==prodid){
+        temcart.push({productid:item.productid,quantity:item.quantity})
+      }
+      })
+    localStorage.setItem('cart',JSON.stringify(temcart))
+    
+  cart.length = 0;
+  temcart.forEach(item => cart.push(item));
+
+    console.log(cart)
 }
