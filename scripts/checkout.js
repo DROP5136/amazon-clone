@@ -1,5 +1,5 @@
 import { products } from '../data/products.js';
-import { cart, clean, totalquantity, totalprice, removefromcart } from './cart.js';
+import { cart, clean, totalquantity, totalprice, removefromcart, updatecart } from './cart.js';
 function rendercart(){
   
 let totalquan=totalquantity() 
@@ -23,9 +23,9 @@ cart.forEach(item => {
         <div class="product-price">₹${matchingproduct.price}</div>
         <div class="product-quantity">
           <span>
-            Quantity: <span class="quantity-label">${item.quantity}</span>
+            Quantity: <span class="quantity-label js-quan-${item.productid}" >${item.quantity}</span>
           </span>
-          <span class="update-quantity-link link-primary">Update</span>
+          <span class="update-quantity-link link-primary js-update-button" data-quan-id="${item.productid}" data-def-quantity="${item.quantity}">Update</span>
           <span class="delete-quantity-link link-primary" data-product-id="${matchingproduct.id}">Delete</span>
         </div>
       </div>
@@ -107,5 +107,43 @@ document.querySelectorAll('.delete-quantity-link').forEach(link=>{
     removefromcart(productId)
     rendercart();
   })
-})}
+
+
+document.querySelectorAll('.js-update-button').forEach(link=>{
+  link.addEventListener('click',()=>{
+    const defaultvalue=link.dataset.defQuantity
+    const id=link.dataset.quanId
+    console.log(id)
+    let txtbox=document.querySelector(`.js-quan-${id}`)
+    txtbox.innerHTML=`<input type="text" class="txtbox" value="${defaultvalue}">`
+
+    link.innerHTML="Save"
+    link.classList.remove("js-update-button")
+    link.classList.add("js-save-button")
+    
+    document.querySelectorAll('.js-save-button').forEach(bink => {
+  bink.addEventListener('click', () => {
+    const id = bink.dataset.quanId;
+    const txt = document.querySelector(`.js-quan-${id} .txtbox`);
+
+    if (!txt) return;
+
+    const newquan = Number(txt.value);
+    
+    if (newquan === 0) {
+      removefromcart(id);
+    } else {
+      updatecart(id, newquan);
+    }
+
+    rendercart();
+  });
+});
+
+})
+
+
+
+})})
+}
 rendercart()

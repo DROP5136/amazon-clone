@@ -61,3 +61,18 @@ export function removefromcart(prodid){
 
     console.log(cart)
 }
+
+export function updatecart(productid,newquantity){
+              cart.forEach(name=>
+              {
+                
+                if(name.productid===productid){
+                  name.quantity=newquantity
+        
+                }
+              }
+              )
+             
+            localStorage.setItem('cart',JSON.stringify(cart))
+            console.log(cart)
+}
