@@ -56,6 +56,7 @@ producthtml+=`
         
         }
     )
+    
 document.querySelector(".js-products-grid").innerHTML=producthtml 
 let timeoutid=new Map()
 document.querySelectorAll('.js-add-to-cart-btn').forEach(button=>{

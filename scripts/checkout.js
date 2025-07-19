@@ -58,7 +58,7 @@ cart.forEach(item => {
 });
 
 let totprice=totalprice()
-
+document.querySelector('.checkout-header-middle-section').innerHTML=`Checkout (<a class="return-to-home-link"href="index.html">${totalquan} items</a>)`
 const ordersummary=`<div class="payment-summary">
           <div class="payment-summary-title">
             Order Summary
