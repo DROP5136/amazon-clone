@@ -1,3 +1,3 @@
 # amazon-clone
 
-drop5136.guthub.io/amazon-clone
+<a href="drop5136.github.io/amazon-clone">Visit<a>
