@@ -68,11 +68,11 @@ export function updatecart(productid,newquantity){
                 
                 if(name.productid===productid){
                   name.quantity=newquantity
-        
+                  
                 }
               }
               )
              
             localStorage.setItem('cart',JSON.stringify(cart))
-            console.log(cart)
+            
 }

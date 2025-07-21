@@ -1,11 +1,14 @@
 import { products } from '../data/products.js';
 import { cart, clean, totalquantity, totalprice, removefromcart, updatecart } from './cart.js';
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'
 function rendercart(){
   
 let totalquan=totalquantity() 
 console.log(totalquan)
 let carthtml = "";
-
+const tomdate=dayjs().add(1,'day').format('dddd, MMMM D')
+const secopt=dayjs().add(3,'day').format('dddd, MMMM D')
+const thirdopt=dayjs().add(5,'day').format('dddd, MMMM D')
 cart.forEach(item => {
   
   const matchingproduct = products.find(product => product.id === item.productid);
@@ -35,21 +38,21 @@ cart.forEach(item => {
         <div class="delivery-option">
           <input type="radio" checked class="delivery-option-input" name="delivery-option-${item.productid}">
           <div>
-            <div class="delivery-option-date">Tuesday, June 21</div>
+            <div class="delivery-option-date">${thirdopt}</div>
             <div class="delivery-option-price-${item.productid}">FREE Shipping</div>
           </div>
         </div>
         <div class="delivery-option">
           <input type="radio" class="delivery-option-input" name="delivery-option-${item.productid}">
           <div>
-            <div class="delivery-option-date">Wednesday, June 15</div>
+            <div class="delivery-option-date">${secopt}</div>
             <div class="delivery-option-price-${item.productid}">₹50 - Shipping</div>
           </div>
         </div>
         <div class="delivery-option">
           <input type="radio" class="delivery-option-input" name="delivery-option-${item.productid}">
           <div>
-            <div class="delivery-option-date">Monday, June 13</div>
+            <div class="delivery-option-date">${tomdate} </div>
             <div class="delivery-option-price-${item.productid}">₹100 - Shipping</div>
           </div>
         </div>
@@ -113,32 +116,19 @@ document.querySelectorAll('.js-update-button').forEach(link=>{
   link.addEventListener('click',()=>{
     const defaultvalue=link.dataset.defQuantity
     const id=link.dataset.quanId
-    console.log(id)
+  
     let txtbox=document.querySelector(`.js-quan-${id}`)
-    txtbox.innerHTML=`<input type="text" class="txtbox" value="${defaultvalue}">`
+    txtbox.innerHTML=`<input type="text" id="txtbox" data-prod-id="${id}" value="${defaultvalue}">`
 
     link.innerHTML="Save"
-    link.classList.remove("js-update-button")
-    link.classList.add("js-save-button")
+   link.classList.add(`js-save-button-${id}`)
+   const inp=document.getElementById('txtbox')
+   console.log(Number(inp.value))
     
-    document.querySelectorAll('.js-save-button').forEach(bink => {
-  bink.addEventListener('click', () => {
-    const id = bink.dataset.quanId;
-    const txt = document.querySelector(`.js-quan-${id} .txtbox`);
 
-    if (!txt) return;
 
-    const newquan = Number(txt.value);
+  
     
-    if (newquan === 0) {
-      removefromcart(id);
-    } else {
-      updatecart(id, newquan);
-    }
-
-    rendercart();
-  });
-});
 
 })
 
