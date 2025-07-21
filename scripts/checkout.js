@@ -52,10 +52,11 @@ cart.forEach(item => {
         <div class="delivery-option">
           <input type="radio" class="delivery-option-input" name="delivery-option-${item.productid}">
           <div>
-            <div class="delivery-option-date">${tomdate} </div>
+            <div class="delivery-option-date">${tomdate}</div>
             <div class="delivery-option-price-${item.productid}">₹100 - Shipping</div>
-          </div>
-        </div>
+          
+            </div>
+        </div><img src="images/icons/Amazon_Prime-Logo.wine.png" alt="prime" class="prime-logo" >
       </div>
     </div>
     
